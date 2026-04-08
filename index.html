@@ -17170,12 +17170,13 @@ const slides = [
   { id: "impact", type: "impact" },
   { id: "investment", type: "investment" },
   { id: "tranches", type: "tranches" },
+  { id: "capital", type: "capital" },
   { id: "team", type: "team" },
   { id: "closing", type: "closing" },
 ];
 
 const slideNames = [
-  "Capa","Problema","Filtro","Solução","Modelo","Acesso","Mercado","Tecnologia","Inovação","Impacto","Investimento","Tranches","Time","Encerramento"
+  "Capa","Problema","Filtro","Solução","Modelo","Acesso","Mercado","Tecnologia","Inovação","Impacto","Investimento","Tranches","Capital","Time","Encerramento"
 ];
 
 function useAnimateIn(active) {
@@ -17756,9 +17757,79 @@ function Closing({ active }) {
 }
 
 // ── SLIDE COMPONENTS MAP ───────────────────────────────────────────────────
-const slideComponents = { cover:Cover, problem:Problem, funnel:Funnel, solution:Solution, model:Model, access:Access, market:Market, tech:Tech, industrial:Industrial, impact:Impact, investment:Investment, tranches:Tranches, team:Team, closing:Closing };
+const slideComponents = { cover:Cover, problem:Problem, funnel:Funnel, solution:Solution, model:Model, access:Access, market:Market, tech:Tech, industrial:Industrial, impact:Impact, investment:Investment, tranches:Tranches, capital:Capital, team:Team, closing:Closing };
 
 // ── SCALED SLIDE ───────────────────────────────────────────────────────────
+function Capital({active}) {
+  const v = useAnimateIn(active);
+  return React.createElement("div", {style: {width:"100%",height:"100%",background:"#061122",display:"flex",flexDirection:"column",justifyContent:"center",padding:"40px 70px",overflow:"hidden",position:"relative"}},
+    React.createElement("div", {style: {position:"absolute",top:"30%",right:"-5%",width:400,height:400,borderRadius:"50%",background:"radial-gradient(circle, rgba(245,197,24,0.07) 0%, transparent 70%)",pointerEvents:"none"}}),
+    React.createElement("div", {style: {...fade(v,0),fontSize:11,letterSpacing:"4px",textTransform:"uppercase",color:"#F5C518",marginBottom:8,fontFamily:"Georgia,serif"}}, "Estrutura de Capital"),
+    React.createElement("div", {style: {...fade(v,0.08),fontSize:28,fontWeight:800,color:"#fff",fontFamily:"Georgia,serif",lineHeight:1.2,marginBottom:4}},
+      "Linha do Tempo do Investimento"
+    ),
+    React.createElement("div", {style: {...fade(v,0.12),fontSize:13,color:"rgba(255,255,255,0.35)",marginBottom:24}},
+      ""
+    ),
+    React.createElement("div", {style: {...fade(v,0.18),marginBottom:6}},
+      React.createElement("div", {style: {fontSize:10,letterSpacing:"3px",textTransform:"uppercase",color:"#1EAAFF",fontWeight:700,marginBottom:10}},
+        "Capital Seed — Equity · R$ 3,3MM · 10% · Valuation R$ 33MM"
+      ),
+      React.createElement("div", {style: {display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}},
+        ...[
+          {label:"T1",date:"D0 · abr/26",valor:"R$ 650K",desc:"Fundação MORE + Início SPE1"},
+          {label:"T2",date:"D+4M · ago/26",valor:"R$ 1,45MM",desc:"Plataforma + Aprovação do Projeto"},
+          {label:"T3",date:"D+9M · jan/27",valor:"R$ 1,2MM",desc:"SPE1 Autônoma + SPE2 Ativada"},
+        ].map(({label,date,valor,desc},i) =>
+          React.createElement("div", {key:i,style:{...fade(v,0.22+i*0.08),background:"rgba(30,170,255,0.06)",borderRadius:12,padding:"14px 16px",border:"1px solid rgba(30,170,255,0.2)"}},
+            React.createElement("div", {style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}},
+              React.createElement("span", {style:{fontSize:11,fontWeight:800,color:"#1EAAFF",letterSpacing:"1px"}}, label),
+              React.createElement("span", {style:{fontSize:14,fontWeight:900,color:"#fff",fontFamily:"Georgia,serif"}}, valor)
+            ),
+            React.createElement("div", {style:{fontSize:10,color:"rgba(255,255,255,0.35)",marginBottom:4}}, date),
+            React.createElement("div", {style:{fontSize:12,color:"rgba(255,255,255,0.6)",lineHeight:1.4}}, desc)
+          )
+        )
+      )
+    ),
+    React.createElement("div", {style:{...fade(v,0.42),height:1,background:"rgba(255,255,255,0.07)",margin:"14px 0"}}),
+    React.createElement("div", {style:{...fade(v,0.46)}},
+      React.createElement("div", {style:{fontSize:10,letterSpacing:"3px",textTransform:"uppercase",color:"#F5C518",fontWeight:700,marginBottom:10}},
+        "Capital Ponte — Aporte SPE · R$ 7MM · Não dilui a Holding MORE"
+      ),
+      React.createElement("div", {style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
+        ...[
+          {label:"Fase A",valor:"R$ 3MM",timing:"Pré-lançamento · até D+9M",garantia:"TAP Construtora",detail:"Co-incorporadora · 15 anos · +3.000 unidades · R$ 400MM GERIC",color:"#F5C518"},
+          {label:"Fase B",valor:"R$ 4MM",timing:"Pós-lançamento · D+12M em diante",garantia:"Empreendimento + % Recebíveis",detail:"Ativado após lançamento · garantia lastreada nas vendas realizadas",color:"#4AE6A4"},
+        ].map(({label,valor,timing,garantia,detail,color},i) =>
+          React.createElement("div", {key:i,style:{...fade(v,0.5+i*0.1),background:color+"08",borderRadius:12,padding:"14px 16px",border:"1px solid "+color+"25"}},
+            React.createElement("div", {style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}},
+              React.createElement("span", {style:{fontSize:11,fontWeight:800,color,letterSpacing:"1px"}}, label),
+              React.createElement("span", {style:{fontSize:16,fontWeight:900,color:"#fff",fontFamily:"Georgia,serif"}}, valor)
+            ),
+            React.createElement("div", {style:{fontSize:10,color:"rgba(255,255,255,0.35)",marginBottom:6}}, timing),
+            React.createElement("div", {style:{display:"flex",alignItems:"flex-start",gap:6}},
+              React.createElement("div", {style:{marginTop:3,width:5,height:5,borderRadius:"50%",background:color,flexShrink:0}}),
+              React.createElement("div", null,
+                React.createElement("div", {style:{fontSize:11,color,fontWeight:600,marginBottom:2}}, "Garantia: "+garantia),
+                React.createElement("div", {style:{fontSize:11,color:"rgba(255,255,255,0.45)",lineHeight:1.5}}, detail)
+              )
+            )
+          )
+        )
+      )
+    ),
+    React.createElement("div", {style:{...fade(v,0.68),marginTop:14,display:"flex",alignItems:"center",gap:10}},
+      React.createElement("div", {style:{width:8,height:8,borderRadius:"50%",background:"#F5C518",flexShrink:0}}),
+      React.createElement("div", {style:{fontSize:11,color:"rgba(255,255,255,0.35)"}},
+        React.createElement("span", {style:{color:"#F5C518",fontWeight:700}}, "Gate Lançamento (D+12M · abr/27)"),
+        " — separa Fase A de Fase B. O ativo existe antes do capital chegar."
+      )
+    )
+  );
+}
+
+
 function ScaledSlide({ children }) {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
